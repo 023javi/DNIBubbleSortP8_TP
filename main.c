@@ -53,17 +53,27 @@ void print_DNIs (unsigned dni[N], char letra[N]) {
     }
 }
 
+void strings_bubbleSort(char dni[N][9+1]) {
+    int ret;
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N - 1; j++) {
+            ret = memcmp(dni[j], dni[j + 1], 10);
+            if (ret > 0) {
+                strings_swap(dni[j], dni[j + 1]);
+            }
+        }
+    }
+}
 
 int main(void)
 {
     srand(time(NULL));
-    unsigned *DNI = (unsigned *)malloc(N * sizeof(unsigned));
-    char *letra = (char *)malloc(N * sizeof(char));
+    unsigned DNI[N];
+    char letra[N];
 
     printf(" > DNIs\n");
     rand_DNIs(DNI, letra);
     printf("\n");
-
     printf(" > DNIs ordenados\n");
     print_DNIs (DNI, letra);
     return 0;
